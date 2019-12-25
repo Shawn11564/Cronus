@@ -1,0 +1,8 @@
+name: Cronus
+version: ${project.version}
+main: dev.mrshawn.cronus.Cronus
+api-version: 1.13
+prefix: Cronus
+authors: [MrShawn]
+description: A ton of utilities to make your plugins more efficient!
+website: https://mrshawn.dev/
