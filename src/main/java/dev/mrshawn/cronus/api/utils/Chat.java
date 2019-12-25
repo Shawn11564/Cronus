@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Chat {
@@ -34,6 +35,13 @@ public class Chat {
 
 	public static String colorize(String message) {
 		return ChatColor.translateAlternateColorCodes('&', message);
+	}
+
+	public static List<String> colorizeList(List<String> list) {
+		List<String> temp = new ArrayList<>();
+		for (String s : list)
+			temp.add(colorize(s));
+		return temp;
 	}
 
 }
