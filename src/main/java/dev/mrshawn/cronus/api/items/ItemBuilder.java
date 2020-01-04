@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Setter
-public class ItemFactory {
+public class ItemBuilder {
 
 	private ItemStack item;
 	private Material material;
@@ -24,19 +24,19 @@ public class ItemFactory {
 	private String name;
 	private Map<Enchantment, Integer> enchantments = new HashMap<>();
 
-	public ItemFactory(Material material) {
+	public ItemBuilder(Material material) {
 		this.material = material;
 		amount = 1;
 		damage = (short) 0;
 	}
 
-	public ItemFactory(Material material, int amount) {
+	public ItemBuilder(Material material, int amount) {
 		this.material = material;
 		this.amount = amount;
 		damage = (short) 0;
 	}
 
-	public ItemFactory(Material material, int amount, short damage) {
+	public ItemBuilder(Material material, int amount, short damage) {
 		this.material = material;
 		this.amount = amount;
 		this.damage = damage;
