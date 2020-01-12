@@ -1,6 +1,7 @@
 package dev.mrshawn.cronus.api.items;
 
 import dev.mrshawn.cronus.api.utils.Chat;
+import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,17 +13,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 @Setter
 public class ItemBuilder {
 
-	private ItemStack item;
-	private Material material;
-	private ItemMeta meta;
-	private int amount;
-	private short damage;
-	private List<String> lore;
-	private String name;
-	private Map<Enchantment, Integer> enchantments = new HashMap<>();
+	protected ItemStack item;
+	protected Material material;
+	protected ItemMeta meta;
+	protected int amount;
+	protected short damage;
+	protected List<String> lore;
+	protected String name;
+	protected Map<Enchantment, Integer> enchantments = new HashMap<>();
 
 	public ItemBuilder(Material material) {
 		this.material = material;
