@@ -30,18 +30,21 @@ public class ItemBuilder {
 		this.material = material;
 		amount = 1;
 		damage = (short) 0;
+		meta = Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public ItemBuilder(Material material, int amount) {
 		this.material = material;
 		this.amount = amount;
 		damage = (short) 0;
+		meta = Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public ItemBuilder(Material material, int amount, short damage) {
 		this.material = material;
 		this.amount = amount;
 		this.damage = damage;
+		meta = Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public void addLoreLine(String line) {
@@ -50,7 +53,6 @@ public class ItemBuilder {
 
 	public ItemStack build() {
 		item = new ItemStack(material, amount, damage);
-		meta = Bukkit.getItemFactory().getItemMeta(material);
 		meta.setDisplayName(Chat.colorize(name));
 		meta.setLore(Chat.colorizeList(lore));
 		item.setItemMeta(meta);

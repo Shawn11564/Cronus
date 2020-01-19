@@ -16,14 +16,17 @@ public class SkullBuilder extends ItemBuilder {
 
 	public SkullBuilder(Material material) {
 		super(material);
+		skullMeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public SkullBuilder(Material material, int amount) {
 		super(material, amount);
+		skullMeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public SkullBuilder(Material material, int amount, short damage) {
 		super(material, amount, damage);
+		skullMeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(material);
 	}
 
 	public void setOwner(UUID uuid) {
@@ -32,7 +35,6 @@ public class SkullBuilder extends ItemBuilder {
 
 	public ItemStack build() {
 		item = new ItemStack(material, amount, damage);
-		skullMeta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(material);
 		skullMeta.setDisplayName(Chat.colorize(name));
 		skullMeta.setLore(Chat.colorizeList(lore));
 		item.setItemMeta(meta);
