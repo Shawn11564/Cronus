@@ -37,7 +37,7 @@ public class SkullBuilder extends ItemBuilder {
 		item = new ItemStack(material, amount, damage);
 		skullMeta.setDisplayName(Chat.colorize(name));
 		skullMeta.setLore(Chat.colorizeList(lore));
-		item.setItemMeta(meta);
+		item.setItemMeta(skullMeta);
 		for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
 			item.addUnsafeEnchantment(entry.getKey(), entry.getValue());
 		}
