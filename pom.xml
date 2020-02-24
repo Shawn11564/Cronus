@@ -6,7 +6,7 @@
 
 	<groupId>dev.mrshawn</groupId>
 	<artifactId>Cronus</artifactId>
-	<version>1.0.3.3</version>
+	<version>1.0.4</version>
 	<packaging>jar</packaging>
 
 	<name>Cronus</name>
@@ -77,6 +77,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.10</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>16.0.2</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
