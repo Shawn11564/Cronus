@@ -1,4 +1,4 @@
-package dev.mrshawn.cronus.events;
+package dev.mrshawn.cronus.api.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
