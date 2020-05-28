@@ -15,13 +15,15 @@ import java.io.InputStreamReader;
 public class YMLFile {
 
 	private String name;
+	private boolean resource;
 	private File file;
 	private YamlConfiguration config;
 
 	public YMLFile(String name, boolean resource) {
 		this.name = name;
+		this.resource = resource;
 		file = new File(API.getPlugin().getDataFolder() + File.separator + name + ".yml");
-		if (resource) {
+		if (resource && !file.exists()) {
 			API.getPlugin().saveResource(name + ".yml", false);
 		} else {
 			if (!file.exists()) {
@@ -36,10 +38,23 @@ public class YMLFile {
 	}
 
 	public void reload(Plugin plugin) {
-		YamlConfiguration newConfig = YamlConfiguration.loadConfiguration(file);
-		InputStream defConfigStream = plugin.getResource(name + ".yml");
-		if (defConfigStream != null) {
-			newConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
+		if (file.exists()) {
+			YamlConfiguration newConfig = YamlConfiguration.loadConfiguration(file);
+			InputStream defConfigStream = plugin.getResource(name + ".yml");
+			if (defConfigStream != null) {
+				newConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
+			}
+		} else {
+			if (resource) {
+				plugin.saveResource(name + ".yml", false);
+			} else {
+				try {
+					file.createNewFile();
+				} catch (final IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+			config = YamlConfiguration.loadConfiguration(file);
 		}
 	}
 
