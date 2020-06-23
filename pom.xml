@@ -6,7 +6,7 @@
 
 	<groupId>dev.mrshawn</groupId>
 	<artifactId>Cronus</artifactId>
-	<version>1.0.4.4</version>
+	<version>1.0.4.4.1</version>
 	<packaging>jar</packaging>
 
 	<name>Cronus</name>

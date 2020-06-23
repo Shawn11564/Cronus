@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @Getter
 public class YMLFile {
@@ -55,11 +53,12 @@ public class YMLFile {
 		if (isResource && !file.exists()) {
 			API.getPlugin().saveResource(fileName + ".yml", false);
 			try {
-				Files.move(
-						Paths.get(new File(API.getPlugin().getDataFolder() + fileName + ".yml").toURI()),
-						Paths.get(file.toURI())
-				);
-			} catch (IOException e) {
+				File resource = new File(API.getPlugin().getDataFolder() + File.separator + fileName + ".yml");
+				if (resource.renameTo(new File(API.getPlugin().getDataFolder() + File.separator + directory + File.separator + fileName + ".yml"))) {
+					resource.delete();
+					file = new File(API.getPlugin().getDataFolder() + File.separator + directory + File.separator + fileName + ".yml");
+				}
+			} catch (Exception e) {
 				Chat.log("&4Unable to relocate: " + fileName + ".yml" + " to new location.");
 				e.printStackTrace();
 			}
