@@ -2,6 +2,7 @@ package dev.mrshawn.cronus.api.files;
 
 import com.google.common.base.Charsets;
 import dev.mrshawn.cronus.API;
+import dev.mrshawn.cronus.api.utils.Chat;
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -10,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Getter
 public class YMLFile {
@@ -19,12 +22,47 @@ public class YMLFile {
 	private File file;
 	private YamlConfiguration config;
 
-	public YMLFile(String name, boolean resource) {
-		this.name = name;
-		this.resource = resource;
-		file = new File(API.getPlugin().getDataFolder() + File.separator + name + ".yml");
-		if (resource && !file.exists()) {
-			API.getPlugin().saveResource(name + ".yml", false);
+	public YMLFile(String fileName, boolean isResource) {
+		this.name = fileName;
+		this.resource = isResource;
+		file = new File(API.getPlugin().getDataFolder() + File.separator + fileName + ".yml");
+		if (isResource && !file.exists()) {
+			API.getPlugin().saveResource(fileName + ".yml", false);
+		} else {
+			if (!file.exists()) {
+				try {
+					file.createNewFile();
+				} catch (final IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		config = YamlConfiguration.loadConfiguration(file);
+	}
+
+	public YMLFile(String directory, String fileName, boolean isResource) {
+		this.name = fileName;
+		this.resource = isResource;
+
+		File dir = new File(API.getPlugin().getDataFolder() + File.separator + directory);
+
+		if (!dir.exists()) {
+			dir.mkdir();
+		}
+
+		file = new File(API.getPlugin().getDataFolder() + File.separator + directory + File.separator + fileName + ".yml");
+
+		if (isResource && !file.exists()) {
+			API.getPlugin().saveResource(fileName + ".yml", false);
+			try {
+				Files.move(
+						Paths.get(new File(API.getPlugin().getDataFolder() + fileName + ".yml").toURI()),
+						Paths.get(file.toURI())
+				);
+			} catch (IOException e) {
+				Chat.log("&4Unable to relocate: " + fileName + ".yml" + " to new location.");
+				e.printStackTrace();
+			}
 		} else {
 			if (!file.exists()) {
 				try {
