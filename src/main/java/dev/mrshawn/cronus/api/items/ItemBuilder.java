@@ -78,7 +78,6 @@ public class ItemBuilder {
 		return this;
 	}
 
-
 	public ItemStack build() {
 		meta.setLore(lore);
 		enchants.forEach((key, value) -> item.addUnsafeEnchantment(key, value));

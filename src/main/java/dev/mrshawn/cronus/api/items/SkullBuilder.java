@@ -29,6 +29,11 @@ public class SkullBuilder extends ItemBuilder {
 		return this;
 	}
 
+	public SkullBuilder setOwner(String owner) {
+		skullMeta.setOwningPlayer(Bukkit.getOfflinePlayer(owner));
+		return this;
+	}
+
 	@Override
 	public ItemStack build() {
 		skullMeta.setLore(getLore());
