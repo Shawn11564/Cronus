@@ -37,6 +37,41 @@ public class YMLFile {
 		config = YamlConfiguration.loadConfiguration(file);
 	}
 
+	public YMLFile(String directory, File file, boolean isResource) {
+		this.file = file;
+		this.resource = isResource;
+
+		File dir = new File(API.getPlugin().getDataFolder() + File.separator + directory);
+
+		if (!dir.exists()) {
+			dir.mkdir();
+		}
+
+		if (isResource && !file.exists()) {
+			API.getPlugin().saveResource(file.getName() + ".yml", false);
+			try {
+				File resource = file;
+				if (resource.renameTo(new File(API.getPlugin().getDataFolder() + File.separator + directory + File.separator + file.getName() + ".yml"))) {
+					resource.delete();
+					file = new File(API.getPlugin().getDataFolder() + File.separator + directory + File.separator + file.getName() + ".yml");
+					this.file = file;
+				}
+			} catch (Exception e) {
+				Chat.log("&4Unable to relocate: " + file.getName() + ".yml" + " to new location.");
+				e.printStackTrace();
+			}
+		} else {
+			if (!file.exists()) {
+				try {
+					file.createNewFile();
+				} catch (final IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		config = YamlConfiguration.loadConfiguration(file);
+	}
+
 	public YMLFile(String fileName, boolean isResource) {
 		this.name = fileName;
 		this.resource = isResource;
