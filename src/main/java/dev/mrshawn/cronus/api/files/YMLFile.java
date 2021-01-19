@@ -20,6 +20,23 @@ public class YMLFile {
 	private File file;
 	private YamlConfiguration config;
 
+	public YMLFile(File file, boolean isResource) {
+		this.file = file;
+		this.resource = isResource;
+		if (isResource && !file.exists()) {
+			API.getPlugin().saveResource(file.getName() + ".yml", false);
+		} else {
+			if (!file.exists()) {
+				try {
+					file.createNewFile();
+				} catch (final IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		config = YamlConfiguration.loadConfiguration(file);
+	}
+
 	public YMLFile(String fileName, boolean isResource) {
 		this.name = fileName;
 		this.resource = isResource;
