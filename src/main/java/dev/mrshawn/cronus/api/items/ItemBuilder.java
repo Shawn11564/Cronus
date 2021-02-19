@@ -3,8 +3,6 @@ package dev.mrshawn.cronus.api.items;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import dev.mrshawn.cronus.api.utils.Chat;
 import lombok.Getter;
-import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -75,6 +73,11 @@ public class ItemBuilder {
 
 	public ItemBuilder addNBT(String key, boolean value) {
 		nbtItem.setBoolean(key, value);
+		return this;
+	}
+
+	public ItemBuilder setCustomModelData(int data) {
+		meta.setCustomModelData(data);
 		return this;
 	}
 
