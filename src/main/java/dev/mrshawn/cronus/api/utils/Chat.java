@@ -44,4 +44,20 @@ public class Chat {
 		return temp;
 	}
 
+	public static String strip(String text) {
+		return ChatColor.stripColor(colorize(text));
+	}
+
+	public static List<String> strip(List<String> list) {
+		List<String> temp = new ArrayList<>();
+		for (String s : colorizeList(list)) {
+			temp.add(ChatColor.stripColor(s));
+		}
+		return temp;
+	}
+
+	public static int getLength(String text, boolean ignoreColorCodes) {
+		return ignoreColorCodes ? strip(text).length() : text.length();
+	}
+
 }

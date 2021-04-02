@@ -6,7 +6,7 @@
 
 	<groupId>dev.mrshawn</groupId>
 	<artifactId>Cronus</artifactId>
-	<version>1.0.6.2</version>
+	<version>1.0.6.3</version>
 	<packaging>jar</packaging>
 
 	<name>Cronus</name>
@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.14.4-R0.1-SNAPSHOT</version>
+			<version>1.16.5-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api</artifactId>
-            <version>2.4.1</version>
+            <version>2.7.1</version>
         </dependency>
     </dependencies>
 </project>
